@@ -1,6 +1,11 @@
 import {app, BrowserWindow, shell, ipcMain, desktopCapturer, screen} from 'electron'
 import {release} from 'node:os'
 import {join} from 'node:path'
+import robotjs from '@jitsi/robotjs'
+
+console.log('robotjs',robotjs)
+
+console.log('process.versions.modules', process.versions.modules)
 
 // The built directory structure
 //

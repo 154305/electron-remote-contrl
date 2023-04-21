@@ -1,12 +1,13 @@
 <template>
   <div class="box">
-    <video class="video" ref="videoRef" autoplay/>
+    <video class="video" ref="videoRef" muted autoplay/>
   </div>
 </template>
 <script setup lang="tsx">
 import {Room} from "../WebRTC";
 
 document.title = '接收端'
+
 new Room(false);
 </script>
 <style lang="scss" scoped>
@@ -14,6 +15,9 @@ new Room(false);
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .video {

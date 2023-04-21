@@ -203,8 +203,13 @@ export class Room {
 }
 
 export class WebTRC {
+
     room;
+
     peer: RTCPeerConnection;
+
+    rtcRtpSenders = [] as RTCRtpSender[];
+
     configuration = {
         iceServers: [
             {urls: 'stun:stun01.sipphone.com'},
@@ -277,10 +282,9 @@ export class WebTRC {
             const remoteVideo = document.getElementsByTagName('video')[0] as HTMLVideoElement;
             console.log('remoteVideo', remoteVideo)
             remoteVideo.srcObject = event.streams[0];
-            remoteVideo.onloadedmetadata = ()=>{
+            remoteVideo.onloadedmetadata = () => {
                 remoteVideo.play()
             }
-            console.log(remoteVideo.srcObject)
         };
     }
 
@@ -317,10 +321,8 @@ export class WebTRC {
             return;
         }
         //先移除之前的
-        // this.peer.getTracks().forEach(this.peer.removeTrack)
-        // Add your stream to be sent to the conneting peer
-        console.log('stream.getTracks()', stream.getTracks())
-        stream.getTracks().forEach((track) => this.peer.addTrack(track, stream));
+        this.rtcRtpSenders?.forEach((track) => this.peer.removeTrack(track))
+        this.rtcRtpSenders = stream.getTracks().map((track) => this.peer.addTrack(track, stream));
     }
 
     /**

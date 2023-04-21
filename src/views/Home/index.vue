@@ -8,6 +8,17 @@
 <script setup lang="tsx">
 import {ref} from "vue";
 import {Room} from "../WebRTC";
+// import robotjs from "@jitsi/robotjs";
+const robotjs = require("@jitsi/robotjs")
+
+// robotjs.moveMouse(111, 111);
+
+// (async () => {
+//   for (let i = 0; i < 10; i++) {
+//     await new Promise(resolve => setTimeout(resolve, 300));
+//     robotjs.moveMouse(111 * i, 111 * i);
+//   }
+// })()
 
 const screenList = ref([]);
 import('electron').then(electron => {
